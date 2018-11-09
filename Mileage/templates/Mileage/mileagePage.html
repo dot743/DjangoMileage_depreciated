@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello world!</title>
+  </head>
+  <body>
+    <h1>User {{ user_person.id}}</h1>
+    <ul>
+      <li>
+        Username: {{user_person.username}}
+        </li><li>
+        Email: {{user_person.email}}
+      </li>
+    </ul>
+    <a href="{% url 'index' %}">Back to list of users</a>
+  </body>
+</html>

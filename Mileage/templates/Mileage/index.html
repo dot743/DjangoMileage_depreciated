@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Hello world!</title>
+  </head>
+  <body>
+    <h1>Users</h1>
+    {% for entry in mileage_user %}
+    <ul>
+      <a href="{% url 'mileage_user' user_person.id %}">{{entry}}</a>
+    </ul>
+    {% endfor %}
+  </body>
+</html>

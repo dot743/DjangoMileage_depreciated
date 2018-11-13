@@ -1,0 +1,33 @@
+{% extends 'base-template.html' %}
+
+{% block body %}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display">{{ message }}</h1>
+  </div>
+</div>
+
+{% if email %}
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display">{{ email }} has been created</h1>
+    <h1 class="display">Your userid is: {{ userid.pk }}, please write it down!</h1>
+    <h1</h1>
+    <!-- <p class="lead">{{locationList}}</p> -->
+  </div>
+</div>
+{% endif %}
+
+<ul>
+
+{% for each in all_location_entries %}
+
+<li>
+  {{ each}}
+</li>
+
+{% endfor %}
+</ul>
+
+{% endblock body %}

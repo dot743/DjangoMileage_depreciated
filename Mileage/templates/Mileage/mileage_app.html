@@ -1,0 +1,32 @@
+{% extends 'base-template.html' %}
+
+{% block body %}
+<div class="row">
+  <button type="button" id="add_button" class="btn btn-lg btn-light button-change col-4 my-5" data-mileage_select = "add">Add User</button>
+  <button type="button" id="create_button" class="btn btn-lg btn-light button-change col-4 my-5" data-mileage_select = "create">Create Entry</button>
+  <button type="button" id="view_button" class="btn btn-lg btn-light button-change col-4 my-5" data-mileage_select = "view">View Entries</button>
+</div>
+
+<p id="mileage_form_body"></p>
+
+{% load static %}
+
+
+  <!-- <script type="text/javascript">
+
+
+    var mileageCSVLocation = "{% static "Mileage/files/District_Mileage_Chart.csv" %}";
+    function readMileageCSV(filePath){
+      var result = null;
+      var request = new XMLHttpRequest();
+      request.open("GET", filePath, true);
+      request.send();
+      if (request.status==200) {
+        result = request.responseText;
+      };
+      // return result;
+      return result;
+    }
+    alert(readMileageCSV(mileageCSVLocation));
+  </script> -->
+{% endblock body %}

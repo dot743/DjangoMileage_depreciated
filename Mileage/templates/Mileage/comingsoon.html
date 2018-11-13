@@ -1,0 +1,68 @@
+{% extends 'base-template.html' %}
+
+{% block body %}
+
+
+  {% load static %}
+  <link href='https://fonts.googleapis.com/css?family=Lobster|Open+Sans:400,400italic,300italic,300|Raleway:300,400,600' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="{% static "Mileage/css/font-awesome.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "Mileage/css/bootstrap.min.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "Mileage/css/animate.css" %}">
+  <link rel="stylesheet" type="text/css" href="{% static "Mileage/css/style.css" %}">
+
+  <div class="content">
+    <div class="container wow fadeInUp delay-03s">
+        <div class="logo text-center">
+          <h2>We Are Baking Something New!! Comming Soon</h2>
+        </div>
+    </div>
+
+    <section id="about" class="section-padding">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-sm-12 text-center">
+            <div class="container wow fadeInUp delay-03s about-title">
+              <h2>About Us</h2>
+              <p>This web app will calculate your mileage and output it to a file</p>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp delay-02s">
+              <div class="img">
+                <i class="fa fa-refresh"></i>
+              </div>
+              <h3 class="abt-hd">Our process</h3>
+              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp delay-04s">
+              <div class="img">
+                <i class="fa fa-eye"></i>
+              </div>
+              <h3 class="abt-hd">Our Vision</h3>
+              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp delay-06s">
+              <div class="img">
+                <i class="fa fa-cogs"></i>
+              </div>
+              <h3 class="abt-hd">Our Approach</h3>
+              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp delay-08s">
+              <div class="img">
+                <i class="fa fa-dot-circle-o"></i>
+              </div>
+              <h3 class="abt-hd">Our Objective</h3>
+              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  <script src="{% static "Mileage/js/jquery.min.js" %}"></script>
+  <script src="{% static "Mileage/js/bootstrap.min.js" %}"></script>
+  <script src="{% static "Mileage/js/jquery.countdown.min.js" %}"></script>
+  <script src="{% static "Mileage/js/wow.js" %}"></script>
+  <script src="{% static "Mileage/js/custom.js" %}"></script>
+  <script src="{% static "Mileage/contactform/contactform.js" %}"></script>
+
+{% endblock body %}

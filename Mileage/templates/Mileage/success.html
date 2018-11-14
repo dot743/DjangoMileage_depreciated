@@ -19,6 +19,7 @@
 </div>
 {% endif %}
 
+{% if all_location_entries %}
 <ul>
 
 {% for each in all_location_entries %}
@@ -27,7 +28,16 @@
   {{ each}}
 </li>
 
+
 {% endfor %}
 </ul>
+
+<p>{{print_locations}}</p>
+
+{% endif %}
+
+{% if entry_added %}
+<a href="{% url 'mileage_app' %}">Go back</a>
+{% endif %}
 
 {% endblock body %}

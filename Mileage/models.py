@@ -16,4 +16,4 @@ class mileage_entry(models.Model):
     mileage_user_key = models.ForeignKey(mileage_user, on_delete=models.CASCADE, related_name="user_entry")
 
     def __str__(self):
-        return f"Username: {self.mileage_user} Date entered: {self.date_entered} Miles Driven: {self.miles_driven} Locations: {self.locations}"
+        return f"{self.mileage_user_key} - Username: Date entered: {self.date_entered} Miles Driven: {self.miles_driven} Locations: {self.locations}"

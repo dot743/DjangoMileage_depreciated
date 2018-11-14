@@ -27,7 +27,7 @@ def mileage_app_form_add(request):
     my_user = mileage_user(username = my_username, email = my_email)
     my_user.save()
 
-    my_userID = mileage_user.objects.filter(username = my_username).first()
+    my_userID = mileage_user.objects.filter(username = my_username)
 
     context = {
         "message": f"{my_username} has been successfully created",
@@ -57,7 +57,7 @@ def mileage_app_form_create(request):
         location_list.append(my_location_entry)
         i += 1
     my_miles_driven = calculateTotalDisance(location_list)
-    my_mileage_user = mileage_user.objects.filter(id = my_userid).first()
+    my_mileage_user = mileage_user.objects.get(pk = my_userid)
     my_entry = mileage_entry(date_entered = my_entry_date, locations = location_list, miles_driven = my_miles_driven, mileage_user_key = my_mileage_user)
     my_entry.save()
     context = {
@@ -65,9 +65,11 @@ def mileage_app_form_create(request):
     "my_userid": my_userid,
     "my_entry_date": my_entry_date,
     "location_list": location_list,
-    "my_miles_driven": my_miles_driven
+    "my_miles_driven": my_miles_driven,
+    "entry_added": True,
+    "message": f"{my_userid} - {my_mileage_user.username}, your entry has been added. You have driven: \n {my_miles_driven} - {location_list}"
     }
-    return render(request, "Mileage/mileage_app_form_create_entry.html", context)
+    return render(request, "Mileage/success.html", context)
 
 # Render "view database" form to render into "mileage app" page
 def view_database(request):
@@ -80,18 +82,29 @@ def mileage_app_form_view(request):
     my_username = request.POST.get('myUsername')
     my_email = request.POST.get('myEmail')
     if my_userid != '':
-        all_location_entries = mileage_entry.objects.filter(mileage_user = my_userid).all()
-    elif my_username != '':
-        all_location_entries = mileage_entry.objects.filter(mileage_user = my_username).all()
-    elif my_email != '':
-        all_location_entries = mileage_entry.objects.filter(mileage_user = my_email).all()
+        all_location_entries = mileage_entry.objects.filter(mileage_user_key_id = my_userid).order_by('date_entered')
+    # elif my_username != '':
+    #     all_location_entries = mileage_entry.objects.filter(mileage_user = my_username).all()
+    # elif my_email != '':
+    #     all_location_entries = mileage_entry.objects.filter(mileage_user = my_email).all()
 
     print(all_location_entries)
+    print_locations = []
+    print_location_entry = ''
+    print_location_entry2 = ''
+    location_list = convertLocationQueryToLocationList(all_location_entries)
+    for each_day in location_list:
+        for location_number in range(len(each_day)):
+            print_location_entry += each_day[location_number].locations
+            if i < len(all_locations_entries):
+                print_location_entry += ' -> '
+        print_locations.append(print_location_entry)
     context = {
     "my_userid": my_userid,
     "my_username": my_username,
     "my_email": my_email,
-    "message": "Your mileage this month is: ",
+    "message": f"{my_userid} - {my_username}, Your mileage this month is: ",
+    "print_locations": print_locations,
     "all_location_entries": all_location_entries
     }
     return render(request, "Mileage/success.html", context)

@@ -83,11 +83,14 @@ def mileage_app_form_view(request):
     my_email = request.POST.get('myEmail')
     if my_userid != '':
         all_location_entries = mileage_entry.objects.filter(mileage_user_key_id = my_userid).order_by('date_entered')
+        user_object = mileage_user.objects.get(id=my_userid)
     # elif my_username != '':
     #     all_location_entries = mileage_entry.objects.filter(mileage_user = my_username).all()
     # elif my_email != '':
     #     all_location_entries = mileage_entry.objects.filter(mileage_user = my_email).all()
 
+
+    print("This is all_location_entries: ")
     print(all_location_entries)
     print_locations = []
     print_location_entry = ''
@@ -95,15 +98,15 @@ def mileage_app_form_view(request):
     location_list = convertLocationQueryToLocationList(all_location_entries)
     for each_day in location_list:
         for location_number in range(len(each_day)):
-            print_location_entry += each_day[location_number].locations
-            if i < len(all_locations_entries):
+            print_location_entry += each_day[location_number]
+            if location_number < len(all_location_entries):
                 print_location_entry += ' -> '
         print_locations.append(print_location_entry)
     context = {
     "my_userid": my_userid,
-    "my_username": my_username,
+    "my_username": user_object.username,
     "my_email": my_email,
-    "message": f"{my_userid} - {my_username}, Your mileage this month is: ",
+    "message": f"{my_userid} - {user_object.username}, Your mileage this month is: ",
     "print_locations": print_locations,
     "all_location_entries": all_location_entries
     }

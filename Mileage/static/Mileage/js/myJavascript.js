@@ -44,12 +44,28 @@ function load_mileage(mileageForm){
 
 // Add additional location input field
 locationFieldCount = 3;
-function addLocationInput() {
+function addLocationInput(locationList) {
+  console.log(locationList);
   var wrapper = $(".input_fields_wrap"); //Fields wrapper
   var add_button = $(".add_field_button"); //Add button ID
-  var locationList = document.getElementById('location_lfdsfsd');
-  var temp = locationList.options.text;
-  alert(temp);
+  //var locationList = document.getElementById('location_lfdsfsd');
+  // var temp = locationList.options.text;
+  // alert(temp);
+  var formGroup = document.createElement('div')
+  formGroup.classList.add('form-group')
+  var label = document.createElement('label')
+  label.innerHTML = 'Location' + locationFieldCount.toString()
+  var selectBox = document.createElement('select')
+  selectBox.classList.add('form-control')
+  selectBox.setAttribute('name', 'location ' + locationFieldCount.toString())
+  locationList.map(l => {
+    var newNode = document.createElement('option');
+    newNode.setAttribute('value', l)
+    newNode.innerHTML = l
+    selectBox.appendChild(newNode)
+  })
+  formGroup.appendChild(label)
+  formGroup.appendChild(selectBox)
   var htmlInput = `
   <div class="form-group">
     <label for="exampleFormControlSelect1">Location ` + locationFieldCount.toString() + `</label>
@@ -62,7 +78,7 @@ function addLocationInput() {
     </select>
   </div>
   `;
-	$(".input_fields_wrap").append(htmlInput); //add input box
+	$(".input_fields_wrap").append(formGroup); //add input box
 
   locationFieldCount++;
 

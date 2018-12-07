@@ -36,6 +36,21 @@
 
 {% endif %}
 
+{% if all_trip_entries %}
+<p>This is my trip entries: </p>
+
+{% for each in all_trip_entries %}
+
+<li>
+  {{ each}}
+</li>
+
+
+{% endfor %}
+</ul>
+
+{% endif %}
+
 {% if entry_added %}
 <a href="{% url 'mileage_app' %}">Go back</a>
 {% endif %}

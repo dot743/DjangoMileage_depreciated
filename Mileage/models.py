@@ -17,3 +17,13 @@ class mileage_entry(models.Model):
 
     def __str__(self):
         return f"{self.mileage_user_key} - Username: Date entered: {self.date_entered} Miles Driven: {self.miles_driven} Locations: {self.locations}"
+
+class Trip(models.Model):
+    location_1 = models.CharField(max_length=36, null=False)
+    location_2 = models.CharField(max_length=36, null=False)
+    miles_driven = models.FloatField(null=False)
+    date_driven = models.DateField(null=False)
+    mileage_user_key = models.ForeignKey(mileage_user, on_delete=models.CASCADE, related_name="userID_trip")
+
+    def __str__(self):
+        return f"User ID: {self.mileage_user_key} | Date entered: {self.date_entered} Miles Driven: {self.miles_driven} Start Location: {self.location_1} End Location: {self.location_2}"

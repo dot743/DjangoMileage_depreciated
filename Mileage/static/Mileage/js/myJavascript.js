@@ -34,7 +34,7 @@ function switchActiveButton(){
 function load_mileage(mileageForm){
   document.querySelector('#mileage_form_body').innerHTML = mileageForm;
   const request = new XMLHttpRequest();
-  request.open('GET', `/${mileageForm}`);
+  request.open('GET', '/' + mileageForm);
   request.onload = () => {
     const response = request.responseText;
     document.querySelector('#mileage_form_body').innerHTML = response;
@@ -51,33 +51,21 @@ function addLocationInput(locationList) {
   //var locationList = document.getElementById('location_lfdsfsd');
   // var temp = locationList.options.text;
   // alert(temp);
-  var formGroup = document.createElement('div')
-  formGroup.classList.add('form-group')
-  var label = document.createElement('label')
-  label.innerHTML = 'Location' + locationFieldCount.toString()
-  var selectBox = document.createElement('select')
-  selectBox.classList.add('form-control')
-  selectBox.setAttribute('name', 'location ' + locationFieldCount.toString())
+  var formGroup = document.createElement('div');
+  formGroup.classList.add('form-group');
+  var label = document.createElement('label');
+  label.innerHTML = 'Location ' + locationFieldCount.toString();
+  var selectBox = document.createElement('select');
+  selectBox.classList.add('form-control');
+  selectBox.setAttribute('name', 'location' + locationFieldCount.toString());
   locationList.map(l => {
     var newNode = document.createElement('option');
-    newNode.setAttribute('value', l)
-    newNode.innerHTML = l
-    selectBox.appendChild(newNode)
-  })
-  formGroup.appendChild(label)
-  formGroup.appendChild(selectBox)
-  var htmlInput = `
-  <div class="form-group">
-    <label for="exampleFormControlSelect1">Location ` + locationFieldCount.toString() + `</label>
-    <select class="form-control" name="location ` + locationFieldCount.toString() + `" id="exampleFormControlSelect ` + locationFieldCount.toString() + `">
-      {% for locations in locationList %}
-        <option>
-          {{ locations }}
-        </options>
-      {% endfor %}
-    </select>
-  </div>
-  `;
+    newNode.setAttribute('value', l);
+    newNode.innerHTML = l;
+    selectBox.appendChild(newNode);
+  });
+  formGroup.appendChild(label);
+  formGroup.appendChild(selectBox);
 	$(".input_fields_wrap").append(formGroup); //add input box
 
   locationFieldCount++;

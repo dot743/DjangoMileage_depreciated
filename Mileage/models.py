@@ -9,6 +9,11 @@ class mileage_user(models.Model):
     def __str__(self):
         return f"{self.id} - Username: {self.username} Email: {self.email}"
 
+    @property
+    def last_date(self):
+        return self.user_entry.latest('date_entered').date_entered
+
+
 class mileage_entry(models.Model):
     date_entered = models.DateField(null=False)
     locations = models.CharField(max_length=120, null=False)

@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 
+from rest_framework.views import APIView
+from json import *
+
 from .models import *
 from .readMileageCSV import *
 
@@ -71,7 +74,7 @@ def mileage_app_form_create(request):
 
     try:
         for i in range(len(location_list)):
-            my_entry = Trip(date_driven = my_entry_date, location_1 = location_list[i], location_2 = location_list[i+1], miles_driven = my_miles_driven, userID_trip = my_mileage_user
+            my_entry = Trip(date_driven = my_entry_date, location_1 = location_list[i], location_2 = location_list[i+1], miles_driven = my_miles_driven, userID_trip = my_mileage_user)
     except IndexError:
         pass
 
@@ -101,7 +104,7 @@ def mileage_app_form_view(request):
     if my_userid != '':
         all_location_entries = mileage_entry.objects.filter(mileage_user_key_id = my_userid).order_by('date_entered')
         user_object = mileage_user.objects.get(id=my_userid)
-        all_trip_entries = Trip.objects.filter(mileage_user_key_id = my_userid).order_by('date_driven'))
+        all_trip_entries = Trip.objects.filter(mileage_user_key_id = my_userid).order_by('date_driven')
     # elif my_username != '':
     #     all_location_entries = mileage_entry.objects.filter(mileage_user = my_username).all()
     # elif my_email != '':
@@ -148,3 +151,10 @@ def view_user(request, user_id):
         "user_person": my_user_entry
     }
     return render(request, "Mileage/mileagePage.html")
+
+
+class UserDateAPIView(APIView):
+
+    def get(self, request, user_id, *args, **kwargs):
+        user = User.objects.get(id=user_id)
+        return json.dumps({'last_date':user.last_date})

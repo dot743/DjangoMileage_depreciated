@@ -10,11 +10,6 @@ mileageReader = csv.reader(mileageFile)
 # Inputs data from file into list
 mileageData = list(mileageReader)
 
-# Test Values
-# location1 = 'Anaheim Hills'
-# location2 = 'Anaheim Hills'
-# locationList = ['Anaheim Hills', 'California', 'Cambridge', ""]
-
 # Finds row number of location
 def rowLocationValue(locationName):
 	rowNumber = 0
@@ -95,47 +90,6 @@ def convertLocationQueryToLocationList(myPrintQuery):
 		unformated_string2 = unformated_string1.strip('\'')
 		location_as_list.append(unformated_string2.split('\', \''))
 	return location_as_list
-
-
-# def convertLocationQueryToLocationList(myPrintQuery):
-# 	eachEntryFixed1 = ""
-# 	newList = []
-# 	fixedListFinal = []
-#
-# 	for eachEntry in myPrintQuery:
-# 		fixedList = []
-# 		fixedList2 = []
-# 		fixedListFinal2 = []
-#
-# 		# Removes filler text
-# 		eachEntryFixed1 = str(eachEntry).replace("(", "")
-# 		eachEntryFixed2 = str(eachEntryFixed1).replace(")", "")
-# 		eachEntryFixed3 = str(eachEntryFixed2).replace("\"", "")
-# 		eachEntryFixed4 = str(eachEntryFixed3).replace("", "")
-# 		eachEntryFixed5 = eachEntryFixed4.replace("\'", "")
-# 		eachEntryFixed6 = eachEntryFixed5[:-1]
-# 		eachEntryFixed7 = eachEntryFixed6.replace("[", "")
-# 		eachEntryFixed8 = eachEntryFixed7.replace("]", "")
-# 		eachEntryFixed9 = eachEntryFixed8.split(",")
-#
-# 		# Remove leading whitespace
-# 		for eachitem in eachEntryFixed9:
-# 			fixedList.append(eachitem.lstrip())
-#
-# 		# Remove blank entries
-# 		for eachitem in fixedList:
-# 			if eachitem != '':
-# 				fixedList2.append(eachitem)
-#
-# 		# Add formatted locations to finalized list
-# 		fixedListFinal.append(fixedList2)
-#
-# 		for eachItem in fixedListFinal:
-# 			myString = " -> ".join(eachItem)
-# 			fixedListFinal2.append(myString)
-#
-#
-# 	return fixedListFinal2
 
 # Converts date query to date
 def convertDateQueryToDateList(query):

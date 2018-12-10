@@ -19,40 +19,148 @@
 </div>
 {% endif %}
 
-{% if all_location_entries %}
-<ul>
-
-{% for each in all_location_entries %}
-
-<li>
-  {{ each}}
-</li>
-
-
-{% endfor %}
-</ul>
-
-<p>{{print_locations}}</p>
-
-{% endif %}
+<!-- View trip entries -->
 
 {% if all_trip_entries %}
-<p>This is my trip entries: </p>
+<ul>
+<p>These are my trip entries: </p>
 
-{% for each in all_trip_entries %}
+{% for each in all_trip_entries_grouped %}
 
-<li>
-  {{ each}}
-</li>
-
-
+  {% if each != " " %}
+    <li>{{each}}</li>
+  {% else %}
+    <p></p>
+  {% endif %}
 {% endfor %}
-</ul>
+
+<p></p>
+<p></p>
+
+<div class="container">
+<textarea class="form-control" rows="5" id="locationBox">
+{% for each in location_output_arrow %}{{each}}
+{% endfor %}</textarea>
+
+<!-- Why is this copyText function not getting seen? -->
+<button onclick="copyText()">Copy text</button>
+
+</div>
+
+<p>
+{% for each in location_output_arrow %}
+{{each}}<br/>
+{% endfor %}
+</p>
+
+<div class="d-flex flex-row">
+
+</div>
+
+<div class="container">
+<textarea class="form-control" rows="5" id="locationBox">
+{% for each in dates_driven_list %}{{each}}
+{% endfor %}</textarea>
+<button onclick="copyText()">Copy text</button>
+</div>
+
+<p>
+{% for each in dates_driven_list %}
+{{each}}<br/>
+{% endfor %}
+</p>
+
+
+<div class="container">
+<textarea class="form-control" rows="5" id="locationBox">
+{% for each in daily_mileage_list %}{{each}}
+{% endfor %}</textarea>
+<button onclick="copyText()">Copy text</button>
+</div>
+
+<p>
+{% for each in daily_mileage_list %}
+{{each}}<br/>
+{% endfor %}
+</p>
+
+
+
+<div class='d-flex flex-row'>
+<div id="arrow-container" class="d-flex flex-column col-7">
+{% for each in location_output_arrow %}
+<p>{{each}}</p>
+{% endfor %}
+</div>
+<div id="dates-driven" class="d-flex flex-column col-3">
+{% for each in dates_driven_list %}
+<p>{{each}}</p>
+{% endfor %}
+</div>
+<div id="daily-mileage" class="d-flex flex-column col-2">
+{% for each in daily_mileage_list %}
+<p>{{each}}</p>
+{% endfor %}
+</div>
+
+</div>
+
+for i in range(len(Entries)):
+  print(location_output_arrow[i])
+  print(dates_driven_list[i])
+  print(daily_mileage_list[i])
+
+
+<button onclick="" class="btn btn-primary" name="exportExcel">Export to Excel</button>
 
 {% endif %}
+
+
 
 {% if entry_added %}
 <a href="{% url 'mileage_app' %}">Go back</a>
 {% endif %}
+
+
+<script>
+const copyText = () => {
+var locationArrow = document.getElementById('arrow-container');
+var datesDriven = document.getElementById('dates-driven');
+var dailyMileage = document.getElemenetById('daily-mileage');
+
+var locationArrowList = [];
+var datesDrivenList = [];
+var dailyMileageList = [];
+
+locationArrow.childNodes.map(node => {
+locationArrowList.push(node.innerHTML);
+}
+
+datesDrivenList.childNodes.map(node => {
+datesDrivenListList.push(node.innerHTML);
+}
+
+dailyMileageArrow.childNodes.map(node => {
+dailyMileageList.push(node.innerHTML);
+}
+
+var masterList = [];
+
+locationArrowList.map(la_item => {
+masterList.push([la_item]);
+}
+
+datesDrivenList.map(index, dd_item => {
+masterList[index].push(dd_item);
+}
+
+dailyMileageList.map(index, dm_item => {
+masterList[index].push(dm_item);
+}
+
+alert(masterList);
+}
+
+</script>
 
 {% endblock body %}

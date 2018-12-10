@@ -7,7 +7,7 @@ class mileage_user(models.Model):
     email = models.EmailField(unique=True)
 
     def __str__(self):
-        return f"{self.id} - Username: {self.username} Email: {self.email}"
+        return f"{self.id} | Username: {self.username} | Email: {self.email}"
 
     @property
     def last_date(self):
@@ -31,4 +31,4 @@ class Trip(models.Model):
     mileage_user_key = models.ForeignKey(mileage_user, on_delete=models.CASCADE, related_name="userID_trip")
 
     def __str__(self):
-        return f"User ID: {self.mileage_user_key} | Date entered: {self.date_entered} Miles Driven: {self.miles_driven} Start Location: {self.location_1} End Location: {self.location_2}"
+        return f"User ID: {self.mileage_user_key} | Date entered: {self.date_driven} | Miles Driven: {self.miles_driven} | Start Location: {self.location_1} | End Location: {self.location_2}"

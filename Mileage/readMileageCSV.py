@@ -118,3 +118,12 @@ def convertMilesQueryToMilesList(query):
 
 		listUpdated.append(float(eachEntryFixed6))
 	return listUpdated
+
+# Formats locations with -> arrows
+def addArrows(location_list):
+	string_arrows = ""
+	for i in range(len(location_list)):
+		string_arrows += str(location_list[i])
+		if i < len(location_list) - 1:
+			string_arrows += " -> "
+	return string_arrows

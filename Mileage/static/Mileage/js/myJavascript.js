@@ -75,3 +75,49 @@ function addLocationInput(locationList) {
 	// 	e.preventDefault(); $(this).parent('div').remove(); x--;
 	// })
 }
+
+// Click button to copy text in textbox
+// function copyText() {
+//   var copyText = document.getElementById("locationBox");
+//   copyText.select();
+//   document.execCommand("copy");
+//   alert("Copied the text: " + copyText.value);
+// }
+
+// const copyText = () => {
+// var locationArrow = document.getElementById('arrow-container');
+// var datesDriven = document.getElementById('dates-driven');
+// var dailyMileage = document.getElemenetById('daily-mileage');
+//
+// var locationArrowList = [];
+// var datesDrivenList = [];
+// var dailyMileageList = [];
+//
+// locationArrow.childNodes.map(node => {
+// locationArrowList.push(node.innerHTML);
+// }
+//
+// datesDrivenList.childNodes.map(node => {
+// datesDrivenListList.push(node.innerHTML);
+// }
+//
+// dailyMileageArrow.childNodes.map(node => {
+// dailyMileageList.push(node.innerHTML);
+// }
+//
+// var masterList = [];
+//
+// locationArrowList.map(la_item => {
+// masterList.push([la_item]);
+// }
+//
+// datesDrivenList.map(index, dd_item => {
+// masterList[index].push(dd_item);
+// }
+//
+// dailyMileageList.map(index, dm_item => {
+// masterList[index].push(dm_item);
+// }
+//
+// alert(masterList);
+// }

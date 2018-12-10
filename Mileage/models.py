@@ -32,3 +32,15 @@ class Trip(models.Model):
 
     def __str__(self):
         return f"User ID: {self.mileage_user_key} | Date entered: {self.date_driven} | Miles Driven: {self.miles_driven} | Start Location: {self.location_1} | End Location: {self.location_2}"
+<<<<<<< HEAD
+=======
+
+class NickTrip(models.Model):
+    location = models.CharField(max_length=36)
+    index = models.IntegerField()
+    date_driven = models.DateField()
+    mileage_user_key = models.ForeignKey(mileage_user, on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = (('date_driven', 'index'),)
+>>>>>>> 7643a7f71d4fe45d953411d2283dac814829155e

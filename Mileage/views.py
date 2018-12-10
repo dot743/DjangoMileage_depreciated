@@ -189,8 +189,11 @@ def mileage_app_form_view(request):
     print("All schools per day with duplicates")
     print(format_output)
 
+<<<<<<< HEAD
 #set(list_item)
 
+=======
+>>>>>>> 7643a7f71d4fe45d953411d2283dac814829155e
     format_output4 = []
     for i in range(len(format_output)):
         format_output3 = []

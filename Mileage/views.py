@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
+from django.core import serializers
 
 # from rest_framework.views import APIView
 from json import *
@@ -32,7 +33,7 @@ def mileage_app_form_add(request):
     my_user = mileage_user(username = my_username, email = my_email)
     my_user.save()
 
-    my_userID = mileage_user.objects.filter(username = my_username)
+    my_userID = mileage_user.objects.get(username = my_username)
 
     context = {
         "message": f"{my_username} has been successfully created",
@@ -189,11 +190,8 @@ def mileage_app_form_view(request):
     print("All schools per day with duplicates")
     print(format_output)
 
-<<<<<<< HEAD
 #set(list_item)
 
-=======
->>>>>>> 7643a7f71d4fe45d953411d2283dac814829155e
     format_output4 = []
     for i in range(len(format_output)):
         format_output3 = []
@@ -221,6 +219,16 @@ def mileage_app_form_view(request):
     print_location_entry2 = ''
     location_list = convertLocationQueryToLocationList(all_location_entries)
 
+    output_for_copy = []
+
+    for i in range(len(dates_driven_list)):
+        output_for_copy.append(str(dates_driven_list[i]))
+        output_for_copy[i] += "\t"
+        output_for_copy[i] += str(daily_mileage_list[i])
+        output_for_copy[i] += "\t"
+        output_for_copy[i] += str(location_output_arrow[i])
+        output_for_copy[i] += "\t\t\t\t\t\t"
+
     context = {
     "my_userid": my_userid,
     "my_username": user_object.username,
@@ -232,7 +240,8 @@ def mileage_app_form_view(request):
     "all_trip_entries_grouped": all_trip_entries_grouped,
     "location_output_arrow": location_output_arrow,
     "dates_driven_list": dates_driven_list,
-    "daily_mileage_list": daily_mileage_list
+    "daily_mileage_list": daily_mileage_list,
+    "output_for_copy": output_for_copy
     }
     return render(request, "Mileage/success.html", context)
 
@@ -252,6 +261,13 @@ def view_user(request, user_id):
         "user_person": my_user_entry
     }
     return render(request, "Mileage/mileagePage.html")
+
+def get_django_user(request, num):
+    user_object = mileage_user.objects.get(id = num)
+    trip_object = Trip.objects.filter(mileage_user_key_id = num).order_by('date_driven').last()
+    date = trip_object.date_driven
+    date += datetime.timedelta(days=1)
+    return HttpResponse(date)
 
 
 # class UserDateAPIView(APIView):

@@ -13,4 +13,5 @@ urlpatterns = [
     path('view_database', views.mileage_app_form_view, name='mileage_form_view_database'),
 
     path('<int:user_id>', views.view_user, name='mileage_user'),
+    path('api/user/<str:num>/', views.get_django_user, name='whatever'),
 ]

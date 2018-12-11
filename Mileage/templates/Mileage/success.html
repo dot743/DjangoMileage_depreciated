@@ -39,7 +39,7 @@
 
 <div class="container">
 <textarea class="form-control" rows="5" id="locationBox">
-{% for each in location_output_arrow %}{{each}}
+{% for each in output_for_copy %}{{each}}
 {% endfor %}</textarea>
 
 <!-- Why is this copyText function not getting seen? -->
@@ -122,45 +122,5 @@ for i in range(len(Entries)):
 {% endif %}
 
 
-<script>
-const copyText = () => {
-var locationArrow = document.getElementById('arrow-container');
-var datesDriven = document.getElementById('dates-driven');
-var dailyMileage = document.getElemenetById('daily-mileage');
-
-var locationArrowList = [];
-var datesDrivenList = [];
-var dailyMileageList = [];
-
-locationArrow.childNodes.map(node => {
-locationArrowList.push(node.innerHTML);
-}
-
-datesDrivenList.childNodes.map(node => {
-datesDrivenListList.push(node.innerHTML);
-}
-
-dailyMileageArrow.childNodes.map(node => {
-dailyMileageList.push(node.innerHTML);
-}
-
-var masterList = [];
-
-locationArrowList.map(la_item => {
-masterList.push([la_item]);
-}
-
-datesDrivenList.map(index, dd_item => {
-masterList[index].push(dd_item);
-}
-
-dailyMileageList.map(index, dm_item => {
-masterList[index].push(dm_item);
-}
-
-alert(masterList);
-}
-
-</script>
 
 {% endblock body %}

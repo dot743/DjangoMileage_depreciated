@@ -77,17 +77,39 @@ function addLocationInput(locationList) {
 }
 
 // Click button to copy text in textbox
-// function copyText() {
-//   var copyText = document.getElementById("locationBox");
-//   copyText.select();
-//   document.execCommand("copy");
-//   alert("Copied the text: " + copyText.value);
-// }
+function copyText() {
+  var copyText = document.getElementById("locationBox");
+  copyText.select();
+  document.execCommand("copy");
+  alert("Copied the text: " + copyText.value);
+}
+
+function getDataFromDjango() {
+  var textBox = document.getElementById('user_ID_box')
+  var text = textBox.value
+
+    fetch('/api/user/' + text + '/')
+      .then(response => response.text())
+      .then(json => {
+          var dateBox = document.getElementById("dateBox")
+          dateBox.value = json
+          highlightFor("dateBox", 'red', 1)
+       })
+  }
+
+  function highlightFor(id,color,seconds){
+      var element = document.getElementById(id)
+      var origcolor = element.style.backgroundColor
+      element.style.backgroundColor = color;
+      var t = setTimeout(function(){
+         element.style.backgroundColor = origcolor;
+      },(seconds*1000));
+  }
 
 // const copyText = () => {
 // var locationArrow = document.getElementById('arrow-container');
 // var datesDriven = document.getElementById('dates-driven');
-// var dailyMileage = document.getElemenetById('daily-mileage');
+// var dailyMileage = document.getElementById('daily-mileage');
 //
 // var locationArrowList = [];
 // var datesDrivenList = [];
